@@ -1,16 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Newsreader } from "next/font/google";
+import { Newsreader } from "next/font/google";
 import "./globals.css";
 
 const serif = Newsreader({
   subsets: ["latin"],
   variable: "--font-serif",
-  display: "swap",
-});
-
-const ui = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-ui-face",
   display: "swap",
 });
 
@@ -34,7 +28,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${ui.variable}`}>
+    <html lang="en" className={`${serif.variable}`}>
       <body>{children}</body>
     </html>
   );

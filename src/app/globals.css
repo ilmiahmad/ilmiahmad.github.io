@@ -12,7 +12,7 @@
   color-scheme: light;
   --font-display: var(--font-serif), "Newsreader", Georgia, serif;
   --font-body: var(--font-serif), "Newsreader", Georgia, serif;
-  --font-ui: var(--font-ui-face), "DM Sans", system-ui, sans-serif;
+  --font-ui: var(--font-serif), "Newsreader", Georgia, serif;
 }
 
 * { box-sizing: border-box; }
