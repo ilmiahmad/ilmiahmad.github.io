@@ -1,16 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Literata } from "next/font/google";
+import { DM_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+const serif = Newsreader({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-serif",
   display: "swap",
 });
 
-const body = Literata({
+const ui = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-ui-face",
   display: "swap",
 });
 
@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${serif.variable} ${ui.variable}`}>
       <body>{children}</body>
     </html>
   );
