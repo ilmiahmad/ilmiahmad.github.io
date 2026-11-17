@@ -21,8 +21,8 @@ export default function Hero() {
         className="photo"
         src={profile.photo}
         alt={`Photo of ${profile.name}`}
-        width={300}
-        height={375}
+        width={160}
+        height={200}
       />
     </header>
   );
