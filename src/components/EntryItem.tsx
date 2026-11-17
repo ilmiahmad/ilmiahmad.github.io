@@ -2,19 +2,13 @@ import type { Entry } from "@/data/resume";
 
 export default function EntryItem({ entry }: { entry: Entry }) {
   return (
-    <div className="entry">
+    <article className="entry">
       <div className="row">
-        <p>
+        <p className="entry-title">
           <strong>{entry.title}</strong>
           {entry.suffix}
         </p>
-        {entry.link ? (
-          <a className="date" href={entry.link.href}>
-            {entry.link.label}
-          </a>
-        ) : (
-          entry.date && <span className="date">{entry.date}</span>
-        )}
+        {entry.date && <span className="date">{entry.date}</span>}
       </div>
       {entry.role && <p className="role">{entry.role}</p>}
       <ul>
@@ -33,6 +27,6 @@ export default function EntryItem({ entry }: { entry: Entry }) {
           );
         })}
       </ul>
-    </div>
+    </article>
   );
 }

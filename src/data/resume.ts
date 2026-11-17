@@ -1,24 +1,35 @@
+export type Link = { label: string; href: string };
+
 export type Entry = {
   title: string;
   /** Text after the bold title, e.g. ", Bekasi – Indonesia" or " [Team]" */
   suffix?: string;
   role?: string;
   date?: string;
-  link?: { label: string; href: string };
+  link?: Link;
   bullets: string[];
   /** Inline links shown after a bullet, keyed by bullet index */
-  bulletLinks?: Record<number, { label: string; href: string }>;
+  bulletLinks?: Record<number, Link>;
+};
+
+export type Project = Entry & {
+  /** One-line description shown while collapsed */
+  blurb: string;
+  tags: string[];
 };
 
 export const profile = {
   name: "Ahmad Jabar Ilmi",
+  headline: "Hardware engineer working on digital IC and FPGA design.",
   photo: "/photo.jpg",
   email: "ilmiahmad983@gmail.com",
-  linkedin: { label: "linkedin.com/in/ahmadjabar", href: "https://linkedin.com/in/ahmadjabar" },
-  github: { label: "github.com/ilmiahmad", href: "https://github.com/ilmiahmad" },
+  linkedin: { label: "LinkedIn", href: "https://linkedin.com/in/ahmadjabar" },
+  github: { label: "GitHub", href: "https://github.com/ilmiahmad" },
   pdf: "/resume.pdf",
   summary:
     "Electrical Engineering graduate from Institut Teknologi Sepuluh Nopember (ITS) with a background in digital design, FPGA development, and IC design through academic and team projects. Currently working as a hardware engineer at LG Electronics. Eager to continue learning and to pursue a Master’s degree in digital IC design.",
+  heroCaption: "A 16×16 systolic array, like the INT8 TPU I built on a Kria KV260. Move over it to send data through.",
+  heroLink: { label: "See the TPU project", href: "https://github.com/ilmiahmad/tpuv1/tree/main" },
 };
 
 export const education: Entry[] = [
@@ -40,15 +51,15 @@ export const education: Entry[] = [
   },
 ];
 
-export const skills: { label: string; value: string; link?: { label: string; href: string } }[] = [
-  { label: "Programming Languages", value: "C/C++, SystemVerilog, Python" },
-  { label: "Hardware Platforms", value: "MCUs (STM32), FPGAs (AMD Zynq, Artix)" },
-  { label: "EDA & Design Tools", value: "Cadence IC Design, IIC-OSIC-TOOLS, KiCad" },
+export const skills: { label: string; value: string; link?: Link }[] = [
+  { label: "Programming languages", value: "C/C++, SystemVerilog, Python" },
+  { label: "Hardware platforms", value: "MCUs (STM32), FPGAs (AMD Zynq, Artix)" },
+  { label: "EDA & design tools", value: "Cadence IC Design, IIC-OSIC-TOOLS, KiCad" },
   {
-    label: "Test & Measurement",
+    label: "Test & measurement",
     value: "Logic Analyzer, Oscilloscope, Signal Generator, Multimeter",
   },
-  { label: "Development Tools", value: "Git, Docker, Linux" },
+  { label: "Development tools", value: "Git, Docker, Linux" },
   { label: "Languages", value: "Bahasa Indonesia, English" },
   {
     label: "Certifications",
@@ -104,20 +115,21 @@ export const experience: Entry[] = [
   },
 ];
 
-export const projects: Entry[] = [
-  {
-    title: "Digital Integration for GF180MCU ASIC Tapeout – ITS LPDP",
-    suffix: " [Team]",
-    date: "Ongoing",
-    bullets: [
-      "Integrated digital and analog IPs with a RISC-V core for a GF180MCU ASIC project.",
-      "Designed AXI4-Lite interfaces and address mapping for processor-to-peripheral communication.",
-      "Developed RTL testbenches and verified IP integration through simulation in Cadence Xcelium and FPGA emulation on an AMD Artix FPGA.",
-    ],
-  },
+/** Bars for the overlap chart above Experience. end = null means "present". */
+export const timeline: { label: string; start: string; end: string | null; kind: "work" | "study" }[] = [
+  { label: "ITS, B.Eng.", start: "2021-08", end: "2025-08", kind: "study" },
+  { label: "ITS Robocon", start: "2022-03", end: "2024-08", kind: "work" },
+  { label: "ITS lab assistant", start: "2023-06", end: "2024-12", kind: "work" },
+  { label: "Polytron intern", start: "2024-09", end: "2024-12", kind: "work" },
+  { label: "LG Electronics", start: "2025-11", end: null, kind: "work" },
+];
+
+export const projects: Project[] = [
   {
     title: "TPUv1 Zynq FPGA Accelerator",
     suffix: " [Personal]",
+    blurb: "INT8 tensor accelerator with a 16×16 systolic array, a Linux driver and a compiler.",
+    tags: ["SystemVerilog", "Kria KV260", "Verilator"],
     link: { label: "[GitHub]", href: "https://github.com/ilmiahmad/tpuv1/tree/main" },
     bullets: [
       "Developed an INT8 TPUv1 accelerator using SystemVerilog with a 16×16 systolic array on AMD Kria KV260.",
@@ -125,9 +137,23 @@ export const projects: Entry[] = [
     ],
   },
   {
+    title: "Digital Integration for GF180MCU ASIC Tapeout – ITS LPDP",
+    suffix: " [Team]",
+    date: "Ongoing",
+    blurb: "RISC-V core with digital and analog IPs, headed for tapeout.",
+    tags: ["RISC-V", "AXI4-Lite", "Cadence Xcelium", "Artix"],
+    bullets: [
+      "Integrated digital and analog IPs with a RISC-V core for a GF180MCU ASIC project.",
+      "Designed AXI4-Lite interfaces and address mapping for processor-to-peripheral communication.",
+      "Developed RTL testbenches and verified IP integration through simulation in Cadence Xcelium and FPGA emulation on an AMD Artix FPGA.",
+    ],
+  },
+  {
     title: "ORB Feature Extraction Accelerator – NeuroEdge",
     suffix: " [Team]",
     date: "2025",
+    blurb: "FPGA ORB feature extraction for SLAM, 8× faster than the software version.",
+    tags: ["FPGA", "SLAM"],
     bullets: [
       "Developed an FPGA based ORB feature extraction accelerator IP for SLAM, achieving an 8× speedup over the original software implementation.",
     ],
@@ -135,6 +161,8 @@ export const projects: Entry[] = [
   {
     title: "Scan D Flip-Flop Design for GF180MCU – IEEE SSCS Chipathon 2025",
     suffix: " [Team]",
+    blurb: "Scan DFF standard cell: circuit design and physical layout.",
+    tags: ["GF180MCU", "Standard cell", "Layout"],
     link: {
       label: "[GitHub]",
       href: "https://github.com/radityankn/voidwalkers-scandff-gf180mcu",
@@ -147,6 +175,8 @@ export const projects: Entry[] = [
   {
     title: "UNICASS SAR-ADC Design",
     suffix: " [Team]",
+    blurb: "SAR-ADC with DRC and LVS clean layout on Sky130.",
+    tags: ["Sky130", "Analog", "DRC/LVS"],
     link: {
       label: "[GitHub]",
       href: "https://github.com/ilmiahmad/UNIC-CASS-TSAR-ADC-ITS/tree/main",
@@ -159,6 +189,8 @@ export const projects: Entry[] = [
   {
     title: "PKM-KC, Hemoglobest",
     suffix: " [Team]",
+    blurb: "Wearable prototype made 50% smaller with a 4-layer PCB and STM32 firmware.",
+    tags: ["PCB", "STM32F1X", "KiCad"],
     link: {
       label: "[Docs]",
       href: "https://docs.google.com/presentation/d/1hdajqf39ifMIpSVojbj5JpPTs7rxEFIQ2_smvGK4g7I/edit?usp=sharing",
