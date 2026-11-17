@@ -28,8 +28,6 @@ export const profile = {
   pdf: "/resume.pdf",
   summary:
     "Electrical Engineering graduate from Institut Teknologi Sepuluh Nopember (ITS) with a background in digital design, FPGA development, and IC design through academic and team projects. Currently working as a hardware engineer at LG Electronics. Eager to continue learning and to pursue a Master’s degree in digital IC design.",
-  heroCaption: "A 16×16 systolic array, like the INT8 TPU I built on a Kria KV260. Move over it to send data through.",
-  heroLink: { label: "See the TPU project", href: "https://github.com/ilmiahmad/tpuv1/tree/main" },
 };
 
 export const education: Entry[] = [
