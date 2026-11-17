@@ -1,33 +1,17 @@
 :root {
   /* IC layout layers: substrate, metal-1, poly, diffusion */
-  --substrate: #eceef1;
+  --substrate: #ffffff;
   --ink: #161b26;
   --muted: #566072;
-  --rule: #cdd2da;
+  --rule: #dde1e7;
   --metal: #2f5bea;
   --poly: #d9453b;
   --diffusion: #1f7a52;
-  --cell: #e1e5ea;
-  --cell-edge: #d2d8e0;
-  --tag-bg: #dfe3ea;
+  --tag-bg: #eef1f5;
 
+  color-scheme: light;
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;
   --font-body: "Literata", Georgia, serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --substrate: #10141c;
-    --ink: #e6e9ef;
-    --muted: #a3acbb;
-    --rule: #2a3140;
-    --metal: #7d9dff;
-    --poly: #ff7a6e;
-    --diffusion: #4fcf97;
-    --cell: #1a2030;
-    --cell-edge: #232b3c;
-    --tag-bg: #1d2433;
-  }
 }
 
 * { box-sizing: border-box; }
@@ -82,6 +66,7 @@ a:hover { color: var(--poly); }
   border-radius: 12px;
   object-fit: cover;
   object-position: center 15%;
+  border: 1px solid var(--rule);
 }
 
 h1, h2 {
