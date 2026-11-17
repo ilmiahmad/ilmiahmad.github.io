@@ -20,7 +20,7 @@ export type Project = Entry & {
 
 export const profile = {
   name: "Ahmad Jabar Ilmi",
-  headline: "Hardware engineer working on digital IC and FPGA design.",
+  headline: "Hardware engineer",
   photo: "/photo.jpg",
   email: "ilmiahmad983@gmail.com",
   linkedin: { label: "LinkedIn", href: "https://linkedin.com/in/ahmadjabar" },
