@@ -82,6 +82,7 @@ li { margin-bottom: 2px; }
   gap: 2px 12px;
   margin: 0;
 }
+.skills .skill { display: contents; }
 .skills dt { font-weight: bold; }
 .skills dt::after { content: ":"; }
 .skills dd { margin: 0; }

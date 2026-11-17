@@ -1,2 +1,7 @@
 RESUME_*.pdf
 WhatsApp Image *.jpeg
+node_modules
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
